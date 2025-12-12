@@ -64,7 +64,6 @@ loom {
 
 jar {
 	from("LICENSE") {
-		// gradle 9 remvoed archivesBaseName, replaced with base.archivesName
 		rename { "${it}_${base.archivesName.get()}"}
 	}
 }
