@@ -64,7 +64,8 @@ loom {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_Female-Gender-Mod"}
+		// gradle 9 remvoed archivesBaseName, replaced with base.archivesName
+		rename { "${it}_${base.archivesName.get()}"}
 	}
 }
 

@@ -89,10 +89,6 @@ public class WardrobeBrowserScreen extends BaseWildfireScreen {
 		PlayerConfig plr = Objects.requireNonNull(getPlayer(), "getPlayer()");
 
 		addButton(builder -> builder
-			//Text.translatable(
-			// 		"wildfire_gender.always_show_list",
-			// 		ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).text()
-			//)
 				.message(() -> Text.translatable("wildfire_gender.always_show_list", ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).text()))
 				.tooltip(ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).tooltip())
 				.position(126, 4)
