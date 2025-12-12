@@ -123,8 +123,7 @@ public final class GuiUtils {
 		entity.lastHeadYaw = entity.getYaw();
 		float p = entity.getScale();
 		Vector3f vector3f = new Vector3f(0.0F, entity.getHeight() / 2.0F + f * p, 0.0F);
-		float q = size / p;
-		InventoryScreen.drawEntity(context, x1, y1, x2, y2, q, vector3f, quaternionf, quaternionf2, entity);
+		InventoryScreen.drawEntity(context, x1, y1, x2, y2, size, p, (float)mouseX, (float)mouseY, entity);
 		entity.bodyYaw = k;
 		entity.setYaw(l);
 		entity.setPitch(m);
@@ -156,7 +155,7 @@ public final class GuiUtils {
 		float p = entity.getScale();
 		Vector3f vector3f = new Vector3f(entXOff, entity.getHeight() / 2.0F + f * p + entYOff, 0.0F);
 		float q = size / p;
-		InventoryScreen.drawEntity(context, x1, y1, x2, y2, q, vector3f, quaternionf, quaternionf2, entity);
+		InventoryScreen.drawEntity(context, x1, y1, x2, y2, size, p, (float)mouseX, (float)mouseY, entity);
 		entity.bodyYaw = k;
 		entity.setYaw(l);
 		entity.setPitch(m);

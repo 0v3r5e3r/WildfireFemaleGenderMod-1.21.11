@@ -79,8 +79,8 @@ public abstract class BaseWildfireScreen extends Screen {
         if(player == null) return;
         // This sucks. In order to position the player properly, we need to trick the player renderer into
         // thinking the area the player should be rendered is much taller than it actually is.
-        ctx.enableScissor(xP - 38, yP - 79, xP + 38, yP + 9);
-        GuiUtils.drawEntityOnScreenNoScissor(ctx, xP - 38, yP - 79, xP + 38, yP + 69, 70, mouseX, mouseY + 35, player);
+        ctx.enableScissor(xP - 38, yP - 79, xP + 38, yP + 90);
+        GuiUtils.drawEntityOnScreenNoScissor(ctx, xP - 38, yP - 150, xP + 38, yP + 9, 40, mouseX, mouseY + 10, player);
         ctx.disableScissor();
     }
 

@@ -50,6 +50,8 @@ public class WildfireCreditsScreen extends BaseWildfireScreen {
     private static final Identifier BUTTON_CONTAINER = Identifier.of(WildfireGender.MODID, "textures/gui/credits/button_container.png");
     private static final Identifier TAB_CONTAINER = Identifier.of(WildfireGender.MODID, "textures/gui/credits/tab_container.png");
 
+   	private final static String NON_THIN = "[^iIl1\\.,']";
+
     //General contributor list
     private final FakeGUIPlayer[] C_GENERAL = Contributors.getContributors().entrySet().stream()
             .filter(it -> it.getValue().name() != null)
@@ -221,14 +223,14 @@ public class WildfireCreditsScreen extends BaseWildfireScreen {
             int xP = creditBoxX + (52 / 2);
             int yP = creditBoxY + (68 / 2);
             ctx.enableScissor(xP - 21, yP - 79, xP + 21, yP + 20);
-            GuiUtils.drawEntityOnScreenNoScissor(ctx, xP - 38, yP - 29, xP + 38, yP + 59, 40, mouseX, mouseY + 35, creditBox.getEntity());
+            GuiUtils.drawEntityOnScreenNoScissor(ctx, xP - 38, yP - 140, xP + 38, yP + 85, 27, mouseX, mouseY, creditBox.getEntity());
             ctx.disableScissor();
 
             mStack.pushMatrix();
             mStack.translate(xP, yP + 47);
             mStack.scale(new Vector2f(0.55f, 0.55f));
             mStack.translate(-xP, (-yP) - 47);
-            GuiUtils.drawCenteredTextWrapped(ctx, textRenderer, Text.literal(creditBox.getName()), xP, yP + 7, (int) (50 * 1.45f), ColorHelper.fullAlpha(0xFFFFFF));
+            GuiUtils.drawCenteredTextWrapped(ctx, textRenderer, Text.literal(ellipsize(creditBox.getName(),12)), xP, yP + 7, (int) (50 * 1.45f), ColorHelper.fullAlpha(0xFFFFFF));
             mStack.popMatrix();
 
             if (mouseX > xP - 24 && mouseX < xP + 23 && mouseY > yP + 22 && mouseY < yP + 31) {
@@ -250,4 +252,36 @@ public class WildfireCreditsScreen extends BaseWildfireScreen {
 
         super.render(ctx, mouseX, mouseY, delta);
     }
+
+    private static int textWidth(String str) {
+		return (int) (str.length() - str.replaceAll(NON_THIN, "").length() / 2);
+	}
+
+	public static String ellipsize(String text, int max) {
+
+		if (textWidth(text) <= max)
+			return text;
+
+		// Start by chopping off at the word before max
+		// This is an over-approximation due to thin-characters...
+		int end = text.lastIndexOf(' ', max - 3);
+
+		// Just one long word. Chop it off.
+		if (end == -1)
+			return text.substring(0, max-3) + "...";
+
+		// Step forward as long as textWidth allows.
+		int newEnd = end;
+		do {
+			end = newEnd;
+			newEnd = text.indexOf(' ', end + 1);
+
+			// No more spaces.
+			if (newEnd == -1)
+				newEnd = text.length();
+
+		} while (textWidth(text.substring(0, newEnd) + "...") < max);
+
+		return text.substring(0, end) + "...";
+	}
 }

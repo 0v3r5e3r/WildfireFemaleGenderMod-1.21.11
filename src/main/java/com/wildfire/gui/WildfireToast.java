@@ -21,7 +21,7 @@ package com.wildfire.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+//import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.wildfire.main.WildfireEventHandler;
 import com.wildfire.main.WildfireGender;
 import com.wildfire.main.WildfireGenderClient;

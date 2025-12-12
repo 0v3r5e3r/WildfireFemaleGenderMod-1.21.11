@@ -40,6 +40,7 @@ import net.minecraft.client.gui.ScreenRect;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.tooltip.TooltipState;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.scoreboard.Team;
@@ -49,6 +50,8 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 public class WardrobeBrowserScreen extends BaseWildfireScreen {
@@ -86,6 +89,10 @@ public class WardrobeBrowserScreen extends BaseWildfireScreen {
 		PlayerConfig plr = Objects.requireNonNull(getPlayer(), "getPlayer()");
 
 		addButton(builder -> builder
+			//Text.translatable(
+			// 		"wildfire_gender.always_show_list",
+			// 		ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).text()
+			//)
 				.message(() -> Text.translatable("wildfire_gender.always_show_list", ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).text()))
 				.tooltip(ClientConfig.INSTANCE.get(ClientConfig.ALWAYS_SHOW_LIST).tooltip())
 				.position(126, 4)

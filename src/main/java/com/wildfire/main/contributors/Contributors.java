@@ -59,6 +59,7 @@ public final class Contributors {
 		addContributor("3f36f7e9-7459-43fe-87ce-4e8a5d47da80", "IzzyBizzy45", Contributor.Role.DEVELOPER);
 		addContributor("ad3cb52d-524b-41b4-b9d6-b91ec440811d", "RacoonDog", Contributor.Role.DEVELOPER);
 		addContributor("525b0455-15e9-49b7-b61d-f291e8ee6c5b", "Powerless001", Contributor.Role.GENERIC);
+		addContributor("b2bd7e53-8735-483f-9ff5-b477777a7829", "KernelOverseer", Contributor.Role.DEVELOPER);
 
 		addContributor("33feda66-c706-4725-8983-f62e5e6cbee7", "Bluelight", Contributor.Role.TRANSLATOR);
 		addContributor("8fb5e95d-7f41-4b4c-b8c5-4f15ea3fa2c1", "ArcticWah", Contributor.Role.TRANSLATOR);

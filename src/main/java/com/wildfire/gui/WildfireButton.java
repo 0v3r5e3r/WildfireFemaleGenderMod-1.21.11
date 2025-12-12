@@ -36,10 +36,10 @@ import java.util.function.Supplier;
 public class WildfireButton extends ButtonWidget {
 
    private final @Nullable ButtonRenderer renderer;
-   private final Supplier<Text> messageSupplier;
+   private final Supplier<net.minecraft.text.Text> messageSupplier;
    public boolean transparent = false;
 
-   private WildfireButton(int x, int y, int w, int h, Supplier<Text> text, ButtonWidget.PressAction onPress, NarrationSupplier narrationSupplier, @Nullable ButtonRenderer renderer) {
+   private WildfireButton(int x, int y, int w, int h, Supplier<net.minecraft.text.Text> text, ButtonWidget.PressAction onPress, NarrationSupplier narrationSupplier, @Nullable ButtonRenderer renderer) {
       super(x, y, w, h, text.get(), onPress, narrationSupplier);
       messageSupplier = text;
       this.renderer = renderer;
@@ -63,7 +63,7 @@ public class WildfireButton extends ButtonWidget {
    }
 
    @Override
-   protected void renderWidget(DrawContext ctx, int mouseX, int mouseY, float partialTicks) {
+   protected void drawIcon(DrawContext ctx, int mouseX, int mouseY, float partialTicks) {
       int clr = 0x444444 + (84 << 24);
       if(this.isSelected()) clr = 0x666666 + (84 << 24);
       if(!active) clr = 0x222222 + (84 << 24);
@@ -86,7 +86,7 @@ public class WildfireButton extends ButtonWidget {
    }
 
    public static final class Builder {
-      private Supplier<Text> messageSupplier;
+      private Supplier<net.minecraft.text.Text> messageSupplier;
       private int x, y, width, height;
       private PressAction onPress;
       private NarrationSupplier narrationSupplier = DEFAULT_NARRATION_SUPPLIER;
@@ -94,7 +94,7 @@ public class WildfireButton extends ButtonWidget {
       private ButtonRenderer renderer = null;
       private boolean active = true;
 
-      public Builder message(@NotNull Supplier<Text> messageSupplier) {
+      public Builder message(@NotNull Supplier<net.minecraft.text.Text> messageSupplier) {
          this.messageSupplier = messageSupplier;
          return this;
       }

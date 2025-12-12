@@ -36,6 +36,10 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.command.permission.PermissionPredicate;
+import net.minecraft.command.permission.Permission;
+import net.minecraft.command.permission.Permission.Level;
+import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.EquipmentSlot;
@@ -63,6 +67,8 @@ import static net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.arg
 
 @Environment(EnvType.CLIENT)
 public class WildfireCommand {
+	private static Permission GameMasterPermissionLevel = new net.minecraft.command.permission.Permission.Level(PermissionLevel.GAMEMASTERS);
+
 	private static final Text COMMAND_PREFIX = Text.empty()
 			.append(Text.literal("[").formatted(Formatting.GRAY))
 			.append(Text.literal("F").formatted(Formatting.LIGHT_PURPLE))
@@ -267,7 +273,9 @@ public class WildfireCommand {
 	private static int equipTrimmedChestplate(CommandContext<FabricClientCommandSource> ctx) {
 		Boolean glint = getOrDefault(ctx, "glint", null, Boolean.class);
 		var player = getIntegratedServerPlayer(ctx);
-		if(!player.hasPermissionLevel(2)) return 0;
+		PermissionPredicate permissions = player.getPermissions();
+		if(!permissions.hasPermission(GameMasterPermissionLevel)) return 0;
+//		if(!player.hasPermissionLevel(2)) return 0;
 		var item = new ItemStack(Items.IRON_CHESTPLATE);
 		var material = player.getRegistryManager().getOrThrow(RegistryKeys.TRIM_MATERIAL).getOrThrow(ArmorTrimMaterials.AMETHYST);
 		var pattern = player.getRegistryManager().getOrThrow(RegistryKeys.TRIM_PATTERN).getOrThrow(ArmorTrimPatterns.COAST);
@@ -281,7 +289,8 @@ public class WildfireCommand {
 
 	private static int spawnArmorStand(CommandContext<FabricClientCommandSource> ctx) {
 		var player = getIntegratedServerPlayer(ctx);
-		if(!player.hasPermissionLevel(2)) return 0;
+		PermissionPredicate permissions = player.getPermissions();
+		if(!permissions.hasPermission(GameMasterPermissionLevel)) return 0;
 		var world = player.getEntityWorld();
 
 		var item = new ItemStack(Items.IRON_CHESTPLATE);

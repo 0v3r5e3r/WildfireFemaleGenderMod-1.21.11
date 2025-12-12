@@ -30,6 +30,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.equipment.EquipmentModel;
@@ -187,7 +188,7 @@ public class GenderArmorLayer<S extends BipedEntityRenderState, M extends BipedE
 		}
 
 		var model = side.isLeft ? lBoobArmor : rBoobArmor;
-		var layer = RenderLayer.getArmorCutoutNoCull(texture);
+		var layer = RenderLayers.armorCutoutNoCull(texture);
 		queue.submitCustom(matrixStack, layer, new BreastRenderCommand(model, state, OverlayTexture.DEFAULT_UV, ColorHelper.fullAlpha(color)));
 
 		if(glint) {
@@ -214,7 +215,7 @@ public class GenderArmorLayer<S extends BipedEntityRenderState, M extends BipedE
 	}
 
 	protected void renderGlint(MatrixStack matrixStack, OrderedRenderCommandQueue renderQueue, S state, BreastModelBox box) {
-		var glintLayer = RenderLayer.getArmorEntityGlint();
+		var glintLayer = RenderLayers.armorEntityGlint();
 		renderQueue.submitCustom(matrixStack, glintLayer, new BreastRenderCommand(box, state, OverlayTexture.DEFAULT_UV, -1));
 	}
 }

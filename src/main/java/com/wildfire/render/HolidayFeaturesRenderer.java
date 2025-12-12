@@ -27,6 +27,7 @@ import net.minecraft.client.model.ModelPartBuilder;
 import net.minecraft.client.model.ModelTransform;
 import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
@@ -64,7 +65,7 @@ public class HolidayFeaturesRenderer extends FeatureRenderer<PlayerEntityRenderS
 
 		matrixStack.push();
 		int overlay = LivingEntityRenderer.getOverlay(state, 0);
-		RenderLayer renderLayer = RenderLayer.getEntityTranslucent(SANTA_HAT_TEXTURE);
+		RenderLayer renderLayer = RenderLayers.entityTranslucent(SANTA_HAT_TEXTURE);
 
 		if(state.baby) {
 			matrixStack.scale(state.ageScale, state.ageScale, state.ageScale);
