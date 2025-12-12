@@ -21,25 +21,20 @@ package com.wildfire.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-//import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.wildfire.main.WildfireEventHandler;
 import com.wildfire.main.WildfireGender;
-import com.wildfire.main.WildfireGenderClient;
 import com.wildfire.main.config.ClientConfig;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.toast.Toast;
-import net.minecraft.client.toast.Toast.Visibility;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
